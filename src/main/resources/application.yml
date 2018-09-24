@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql:///size_design?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#    password: qing1016..
+    password: Root123!!
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+  jackson:
+      date-format: yyyy-MM-dd
+      time-zone: GMT+8
+  security:
+      basic:
+        enabled: false
+server:
+  port: 8068
