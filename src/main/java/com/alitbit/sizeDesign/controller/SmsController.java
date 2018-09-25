@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -27,12 +28,13 @@ public class SmsController {
     }
 
     @RequestMapping("/ok/{number}/{sms}")
-    public String authSms(@PathVariable String number, @PathVariable String sms) {
+    public String authSms(@PathVariable String number, @PathVariable String sms, HttpSession httpSession) {
         String sms2 = redisTemplate.opsForValue().get(number);
-        System.out.printf(sms2);
         boolean returnStr = false;
-        if(sms2.equals(sms))
+        if(sms2.equals(sms)){
             returnStr = true;
+            httpSession.setAttribute("phone", number);
+        }
         return returnStr + "";
     }
 }

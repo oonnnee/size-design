@@ -11,10 +11,11 @@ import com.alitbit.sizeDesign.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("d")
+@RequestMapping("/customer-info")
 public class CustomerInfoController {
 
     @Autowired
@@ -22,9 +23,17 @@ public class CustomerInfoController {
 
     @PostMapping("/submit")
     public ResultVO submit(@Valid CustomerInfoSaveForm customerInfoSaveForm){
+
         CustomerInfo saveResult = customerInfoService.save(TransformUtil.saveFormToCustomerInfo(customerInfoSaveForm));
 
         return ResultVOUtil.success(saveResult);
     }
 
+//    @GetMapping("/test")
+//    public ResultVO submit(HttpSession httpSession){
+//
+//        httpSession.setAttribute("phone", "123");
+//
+//        return ResultVOUtil.success("");
+//    }
 }
