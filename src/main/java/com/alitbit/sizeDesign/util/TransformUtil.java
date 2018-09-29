@@ -4,10 +4,13 @@ import com.alitbit.sizeDesign.bean.CustomerInfo;
 import com.alitbit.sizeDesign.form.CustomerInfoSaveForm;
 import org.springframework.beans.BeanUtils;
 
+import java.util.Date;
+
 public class TransformUtil {
 
     public static CustomerInfo saveFormToCustomerInfo(CustomerInfoSaveForm customerInfoSaveForm){
         CustomerInfo customerInfo = new CustomerInfo();
+        customerInfo.setDate(new Date());
         customerInfoSaveForm.setSmallSize(customerInfoSaveForm.getSmallSize().toUpperCase());
         BeanUtils.copyProperties(customerInfoSaveForm, customerInfo);
         return customerInfo;

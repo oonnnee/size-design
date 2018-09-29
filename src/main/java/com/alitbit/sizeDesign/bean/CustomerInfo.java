@@ -1,10 +1,14 @@
 package com.alitbit.sizeDesign.bean;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
 @Entity
@@ -13,6 +17,7 @@ public class CustomerInfo {
     @Id
     private String phone;
     private String tbName; //淘宝名
+    private Date date;
     private String smallSize; //淘宝上尺寸
     private String bigSize; //生成的尺寸
     private BigDecimal height; //身高

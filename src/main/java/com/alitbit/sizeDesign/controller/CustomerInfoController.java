@@ -22,18 +22,16 @@ public class CustomerInfoController {
     private CustomerInfoService customerInfoService;
 
     @PostMapping("/submit")
-    public ResultVO submit(@Valid CustomerInfoSaveForm customerInfoSaveForm){
+    public ResultVO submit(HttpSession httpSession, @Valid CustomerInfoSaveForm customerInfoSaveForm){
+
+        Object phone = httpSession.getAttribute("phone");
+//        if (phone == null){
+////            return ResultVOUtil.noLogin();
+////        }
 
         CustomerInfo saveResult = customerInfoService.save(TransformUtil.saveFormToCustomerInfo(customerInfoSaveForm));
 
         return ResultVOUtil.success(saveResult);
     }
 
-//    @GetMapping("/test")
-//    public ResultVO submit(HttpSession httpSession){
-//
-//        httpSession.setAttribute("phone", "123");
-//
-//        return ResultVOUtil.success("");
-//    }
 }

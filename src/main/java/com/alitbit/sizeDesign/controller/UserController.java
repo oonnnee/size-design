@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/auth")
-public class AuthController {
+@RequestMapping("/user")
+public class UserController {
 
-    @GetMapping
+    @GetMapping("/auth")
     public String auth(HttpSession httpSession){
         Object phone = httpSession.getAttribute("phone");
         if (phone != null){
@@ -19,4 +19,10 @@ public class AuthController {
         return "false";
     }
 
+    @GetMapping("/phone")
+    public String phone(HttpSession httpSession){
+        String phone = (String)httpSession.getAttribute("phone");
+
+        return phone;
+    }
 }

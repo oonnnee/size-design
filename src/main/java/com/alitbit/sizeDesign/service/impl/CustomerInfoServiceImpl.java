@@ -10,6 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
+import java.util.NoSuchElementException;
+
 @Service
 public class CustomerInfoServiceImpl implements CustomerInfoService {
 
@@ -18,6 +21,16 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     @Override
     public CustomerInfo save(CustomerInfo customerInfo) {
+        CustomerInfo before = null;
+        try{
+            before = customerInfoDao.findById(customerInfo.getPhone()).get();
+        }catch (NoSuchElementException e){
+        }
+
+        if (before != null){
+            customerInfo.setBigSize(before.getBigSize());
+        }
+
         CustomerInfo saveResult = customerInfoDao.save(customerInfo);
 
         return saveResult;
