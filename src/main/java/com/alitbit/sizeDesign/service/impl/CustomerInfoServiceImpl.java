@@ -45,5 +45,16 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         return PageUtil.getPageChunk(customerInfoPage);
     }
 
+    @Override
+    public CustomerInfo find(String phone) {
+        CustomerInfo customerInfo = null;
+        try{
+            customerInfo = customerInfoDao.findById(phone).get();
+        }catch (NoSuchElementException e){
+        }
+
+        return customerInfo;
+    }
+
 
 }

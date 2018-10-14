@@ -8,5 +8,6 @@ public interface CustomerInfoService {
 
     CustomerInfo save(CustomerInfo customerInfo);
     PageChunk<CustomerInfo> findPage(Integer page, Integer size);
+    CustomerInfo find(String phone);
 
 }

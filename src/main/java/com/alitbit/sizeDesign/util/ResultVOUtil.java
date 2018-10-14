@@ -5,6 +5,10 @@ import com.alitbit.sizeDesign.vo.ResultVO;
 
 public class ResultVOUtil {
 
+    public static ResultVO success(){
+        return new ResultVO(ResultEnum.SUCCESS.getCode(),"成功", null);
+    }
+
     public static ResultVO success(Object data){
         return new ResultVO(ResultEnum.SUCCESS.getCode(),"成功", data);
     }

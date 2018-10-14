@@ -1,6 +1,9 @@
 package com.alitbit.sizeDesign.controller;
 
+import com.alitbit.sizeDesign.util.ResultVOUtil;
+import com.alitbit.sizeDesign.vo.ResultVO;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +20,12 @@ public class UserController {
             return "true";
         }
         return "false";
+    }
+
+    @PostMapping("/logout")
+    public ResultVO logout(HttpSession httpSession){
+        httpSession.removeAttribute("phone");
+        return ResultVOUtil.success();
     }
 
     @GetMapping("/phone")

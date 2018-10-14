@@ -25,13 +25,22 @@ public class CustomerInfoController {
     public ResultVO submit(HttpSession httpSession, @Valid CustomerInfoSaveForm customerInfoSaveForm){
 
         Object phone = httpSession.getAttribute("phone");
-//        if (phone == null){
-////            return ResultVOUtil.noLogin();
-////        }
+        if (phone == null){
+            return ResultVOUtil.noLogin();
+        }
 
         CustomerInfo saveResult = customerInfoService.save(TransformUtil.saveFormToCustomerInfo(customerInfoSaveForm));
 
         return ResultVOUtil.success(saveResult);
+    }
+
+    @GetMapping("/get")
+    public ResultVO submit(HttpSession httpSession){
+        String phone = (String)httpSession.getAttribute("phone");
+        if (phone == null){
+            return ResultVOUtil.noLogin();
+        }
+        return ResultVOUtil.success(customerInfoService.find(phone));
     }
 
 }
